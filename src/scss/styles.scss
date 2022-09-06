@@ -1,0 +1,366 @@
+@import "variables";
+@import "mixins";
+@import "base";
+
+body {
+  background-color: #fff;
+  background-image: url(/static/fixed_bg.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: $text-main;
+  min-height: 100vh;
+  min-height: var(--app-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 178px;
+    height: 682px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(/static/leaves_left.png);
+    background-size: cover;
+    background-position: right;
+
+    @include mobile {
+      width: 88px;
+      height: 388px;
+      top: 133px;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 178px;
+    height: 682px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: url(/static/leaves_right.png);
+    background-size: cover;
+    background-position: left;
+
+    @include mobile {
+      width: 88px;
+      height: 376px;
+      top: 189px;
+    }
+  }
+
+  @include tablet {
+    background-image: url(/static/fixed_bg_tablet.jpg);
+  }
+
+  @include mobile {
+    background-image: url(/static/fixed_bg_mobile.jpg);
+  }
+}
+
+.title {
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  margin-bottom: 2.6rem;
+  color: $blue;
+  font-weight: 800;
+}
+
+.packs {
+  max-width: $packs-container;
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 6rem;
+  z-index: 1;
+  position: relative;
+
+  @include tablet {
+    padding-top: 4rem;
+  }
+
+  @include mobile {
+    padding-top: 3rem;
+  }
+}
+
+.tabs {
+  border-radius: 2rem;
+  border: 1px solid $tabs-border;
+  min-height: 4rem;
+  display: flex;
+  justify-content: center;
+
+  background: #fff;
+  &-quantity {
+    margin-bottom: 1.7rem;
+  }
+}
+
+.btn-tab {
+  padding: 0.3rem;
+  border-radius: 2rem;
+  border: none;
+  background: none;
+  position: relative;
+  cursor: pointer;
+
+  &.active {
+    color: #fff;
+  }
+
+  &.active::before {
+    content: "";
+    display: block;
+    width: calc(100% + 0.2rem);
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+    transition: 0.3s;
+    background: $blue;
+  }
+
+  &-quantity {
+    width: 33.3333333%;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: $grey;
+
+    &.active::before {
+      border-radius: 2.4rem;
+      height: 4.6rem;
+    }
+  }
+
+  &-type {
+    width: 50%;
+    font-size: 1.6rem;
+    color: $text-main;
+
+    &.active::before {
+      border-radius: 2rem;
+    }
+  }
+}
+
+.btn-tab span {
+  z-index: 2;
+  position: relative;
+  pointer-events: none;
+}
+
+.subscribe {
+  display: none;
+  background: #fff;
+  opacity: 0.8;
+  padding: 0.5rem;
+  text-align: left;
+  margin-top: 1.5rem;
+
+  &.shown {
+    display: block;
+    padding: 1.5rem 0.5rem;
+  }
+
+  @include mobile {
+    @include full-width;
+    padding: 1.5rem;
+  }
+}
+
+.subscribe .container {
+  max-width: $packs-container;
+  margin: 0 auto;
+}
+
+input#subscribe {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.8rem;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.subscribe .terms {
+  font-size: 1.2rem;
+  color: $grey;
+  line-height: 1.3;
+}
+
+.subscribe .terms a {
+  color: $blue;
+}
+
+.pack-img {
+  display: none;
+  position: relative;
+  min-height: 286px;
+
+  &.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &[data-id="3"]::before,
+  &[data-id="6"]::before {
+    content: "";
+    display: block;
+    width: 113px;
+    height: 113px;
+    position: absolute;
+    background-size: cover;
+    top: 4.3rem;
+    left: 2.2rem;
+  }
+
+  &[data-id="3"]::before {
+    background-image: url(/static/stamp_best_seller.svg);
+  }
+
+  &[data-id="6"]::before {
+    background-image: url(/static/stamp_best_value.svg);
+  }
+}
+
+.pack-img img {
+  max-width: unset;
+  width: calc(100% + 50px);
+  margin-left: -24px;
+}
+
+.pricing {
+  font-weight: 700;
+  margin-top: -3.1rem;
+}
+
+.pricing .final {
+  font-size: 4.8rem;
+  color: $blue;
+}
+
+.pricing .retail,
+.pricing .savings {
+  margin-bottom: 0.3rem;
+}
+
+.pricing .retail .value {
+  color: $red;
+  text-decoration: line-through;
+}
+
+.pricing .savings .value {
+  color: $green;
+}
+
+.shipping-note {
+  margin-bottom: 1.8rem;
+  text-transform: uppercase;
+}
+
+.buy-btn {
+  display: block;
+  width: 100%;
+  border: none;
+  background: $green;
+  font-size: 3.2rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 29px;
+  padding: 8px;
+  transition: 0.3s;
+  margin-bottom: 4.6rem;
+
+  &:hover,
+  &:focus {
+    background: $green-hover;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    cursor: unset;
+    background: $grey;
+  }
+}
+
+.icons-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4.2rem;
+}
+
+.icons-row .icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 3.2rem;
+  min-width: 121px;
+
+  @include mobile {
+    margin: 0 2.8rem;
+  }
+}
+
+.icons-row .icon svg {
+  min-height: 30px;
+  margin-bottom: 1rem;
+}
+
+.icons-row .icon .text {
+  font-size: 1.4rem;
+}
+
+.guarantee {
+  width: 80%;
+  margin: 0 auto;
+
+  @include mobile {
+    width: 90%;
+  }
+}
+
+.guarantee svg {
+  margin-bottom: 1rem;
+}
+
+.guarantee .note {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: $green;
+  margin-bottom: 2.4rem;
+}
+
+.guarantee .description {
+  font-size: 1.8rem;
+  margin-bottom: 2.5rem;
+}
+
+.guarantee .small-note {
+  font-size: 1.4rem;
+  color: $grey;
+}
+
+.info {
+  padding-bottom: 5rem;
+
+  @include tablet {
+    padding-bottom: 4rem;
+  }
+
+  @include mobile {
+    padding-bottom: 3rem;
+  }
+}
