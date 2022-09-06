@@ -51,8 +51,8 @@ const updatePack = () => {
   } else {
     savings = (retailPrice - subscribePrice).toFixed(2);
     $(".subscribe").addClass("shown");
-
     $(".pricing .final").text(currency + subscribePrice + "/month");
+    $(".buy-btn").attr("href", products[activePack].subscribeLink);
 
     if (!$("input#subscribe").is(":checked")) {
       $(".buy-btn").addClass("disabled");
